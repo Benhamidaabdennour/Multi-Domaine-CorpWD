@@ -14,6 +14,8 @@ Next Imports are tools we need for our code to work properly
 written in the language we want
 '''
 import wikipedia #https://wikipedia.readthedocs.io/en/latest/code.html#api
+import os
+import json
 from re import sub #https://docs.python.org/3/library/re.html
 from nltk import ngrams
 from nltk.tokenize import word_tokenize
@@ -59,7 +61,7 @@ def BuildCorp(Domaines, Name):
                 if Lang == "ar":
                     Articles[wikipedia.page(Article).title] = sub(r'[^\u0600-\u06ff\u0750-\u077f\ufb50-\ufbc1\ufbd3-\ufd3f\ufd50-\ufd8f\ufd50-\ufd8f\ufe70-\ufefc\uFDF0-\uFDFD]+',' ',wikipedia.page(Article).content)
                 else:
-                    Articles[wikipedia.page(Article).title] = sub(r'[^A-Za-z0-9]+', ' ',wikipedia.page(Article).content)
+                    Articles[wikipedia.page(Article).title] = sub(r'[^A-Za-z]+', ' ',wikipedia.page(Article).content)
                 Count = Count + len(word_tokenize(Articles[wikipedia.page(Article).title]))
                 Count2 = Count2 + 1
                 print(Count2)
